@@ -1,10 +1,15 @@
 #!/bin/bash
 
-# Define the daemon commands
-COMMAND1="cargo tauri dev"
-COMMAND2="npx tailwindcss -i src/style.css -o src/output.css --watch"
+# Start the tailwind watch server
+npx tailwindcss -i src/input.css -o src/output.css --watch
 
-# Open GNOME Terminal with two tabs running the daemon commands
-gnome-terminal \
-  --tab --title="tauri dev" -- bash -c "$COMMAND1; exec bash" \
-  --tab --title="tailwind watch" -- bash -c "$COMMAND2; exec bash"
+# For some reason by default target x86_64 is not built
+# In my machine android studio virtual machines with armeabiv7 images crashed
+# It is also optimal to emulate in x86_64 arch
+# The following resolved
+
+cargo tauri build -t x86_64
+
+# Assuming you have android vm running
+cargo tauri android open
+
