@@ -4,7 +4,6 @@ let greetInputEl;
 let greetMsgEl;
 
 async function ping() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
   let response = await invoke("plugin:androidwifi|ping", { payload: { value: greetInputEl.value } });
   greetMsgEl.textContent = response.value;
 }
