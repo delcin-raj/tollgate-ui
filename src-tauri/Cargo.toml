@@ -23,4 +23,3 @@ tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri-plugin-androidwifi = { path = "/home/delcin/projects/tauri-plugin-androidwifi" }
-

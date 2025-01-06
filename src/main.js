@@ -3,9 +3,10 @@ const { invoke } = window.__TAURI__.core;
 let greetInputEl;
 let greetMsgEl;
 
-async function greet() {
+async function ping() {
   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
+  let response = await invoke("plugin:androidwifi|ping", { payload: { value: greetInputEl.value } });
+  greetMsgEl.textContent = response.value;
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -13,6 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
   greetMsgEl = document.querySelector("#greet-msg");
   document.querySelector("#greet-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    greet();
+    ping();
   });
 });
