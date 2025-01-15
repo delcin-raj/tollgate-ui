@@ -9,22 +9,23 @@ import app.tauri.plugin.Plugin
 import app.tauri.plugin.Invoke
 
 import android.Manifest
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @InvokeArg
-class PingArgs {
+class Empty {
   var value: String? = null
 }
 
 @TauriPlugin
-class ExamplePlugin(private val activity: Activity): Plugin(activity) {
-    private val implementation = Example()
+class WifiPlugin(private val activity: Activity): Plugin(activity) {
+    private val implementation = WifiDetails()
 
     @Command
-    fun ping(invoke: Invoke) {
-        val args = invoke.parseArgs(PingArgs::class.java)
-
+    fun getWifiDetails(invoke: Invoke) {
         val ret = JSObject()
-        ret.put("value", implementation.pong(args.value ?: "default value :(", activity.applicationContext))
+        val json = Json.encodeToString(implementation.getWifiDetails(activity.applicationContext))
+        ret.put("wifis", json)
         invoke.resolve(ret)
     }
 }

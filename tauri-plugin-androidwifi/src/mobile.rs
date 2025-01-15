@@ -15,7 +15,7 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
   api: PluginApi<R, C>,
 ) -> crate::Result<Androidwifi<R>> {
   #[cfg(target_os = "android")]
-  let handle = api.register_android_plugin("com.plugin.androidwifi", "ExamplePlugin")?;
+  let handle = api.register_android_plugin("com.plugin.androidwifi", "WifiPlugin")?;
   #[cfg(target_os = "ios")]
   let handle = api.register_ios_plugin(init_plugin_androidwifi)?;
   Ok(Androidwifi(handle))
@@ -25,10 +25,10 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct Androidwifi<R: Runtime>(PluginHandle<R>);
 
 impl<R: Runtime> Androidwifi<R> {
-  pub fn ping(&self, payload: PingRequest) -> crate::Result<PingResponse> {
+  pub fn get_wifi_details(&self, payload: Empty) -> crate::Result<PingResponse> {
     self
       .0
-      .run_mobile_plugin("ping", payload)
+      .run_mobile_plugin("getWifiDetails", payload)
       .map_err(Into::into)
   }
 }

@@ -14,7 +14,7 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct Androidwifi<R: Runtime>(AppHandle<R>);
 
 impl<R: Runtime> Androidwifi<R> {
-  pub fn ping(&self, payload: PingRequest) -> crate::Result<PingResponse> {
+  pub fn ping(&self, payload: Empty) -> crate::Result<PingResponse> {
     Ok(PingResponse {
       value: payload.value,
     })

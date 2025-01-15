@@ -2,7 +2,7 @@
 
 Default permissions for the plugin
 
-- `allow-ping`
+- `allow-getWifiDetails`
 
 ## Permission Table
 
@@ -12,6 +12,32 @@ Default permissions for the plugin
 <th>Description</th>
 </tr>
 
+
+<tr>
+<td>
+
+`androidwifi:allow-getWifiDetails`
+
+</td>
+<td>
+
+Enables the getWifiDetails command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`androidwifi:deny-getWifiDetails`
+
+</td>
+<td>
+
+Denies the getWifiDetails command without any pre-configured scope.
+
+</td>
+</tr>
 
 <tr>
 <td>

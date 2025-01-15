@@ -7,7 +7,7 @@ use crate::AndroidwifiExt;
 #[command]
 pub(crate) async fn ping<R: Runtime>(
     app: AppHandle<R>,
-    payload: PingRequest,
+    payload: Empty,
 ) -> Result<PingResponse> {
-    app.androidwifi().ping(payload)
+    app.androidwifi().get_wifi_details(payload)
 }
